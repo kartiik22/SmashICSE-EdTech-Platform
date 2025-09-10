@@ -1,6 +1,6 @@
 {
-  "name": "codeplay-client",
-  "description": "This is the client side of the CodePlay App",
+  "name": "smashicse-client",
+  "description": "This is the client side of the SmashICSE App",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

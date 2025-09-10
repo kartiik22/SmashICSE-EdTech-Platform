@@ -1,7 +1,7 @@
 {
-	"name": "codeplay-backend",
+	"name": "smashicse-backend",
 	"version": "1.0.0",
-	"description": "codeplay-backend",
+	"description": "smashicse-backend",
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
@@ -9,7 +9,7 @@
 		"build": "npm install"
 	},
 	"keywords": [
-		"codeplay-backend"
+		"smashicse-backend"
 	],
 	"author": "kartiik22",
 	"license": "ISC",
