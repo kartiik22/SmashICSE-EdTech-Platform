@@ -27,34 +27,42 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CORS Configuration
-app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    
-    // Allow both localhost and production frontend
-    const allowedOrigins = ['http://localhost:3000', 'https://smashicse-edtech-platform-1.onrender.com'];
-    if (allowedOrigins.includes(origin)) {
-        res.header('Access-Control-Allow-Origin', origin);
-    }
-    
-    // Essential CORS headers
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 
-        'Origin, X-Requested-With, Content-Type, Accept, Authorization, ' +
-        'X-CSRF-Token, Referrer-Policy, sec-ch-ua, sec-ch-ua-mobile, ' +
-        'sec-ch-ua-platform, User-Agent'
-    );
-    res.header('Access-Control-Expose-Headers', 'Content-Length, X-CSRF-Token');
-    res.header('Cache-Control', 'no-store, no-cache, must-revalidate');
-    res.header('Referrer-Policy', 'strict-origin-when-cross-origin');
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://smashicse-edtech-platform-1.onrender.com"
+];
 
-    // Handle preflight
-    if (req.method === 'OPTIONS') {
-        res.status(204).send();
-        return;
-    }
-    next();
-});
+app.use(cors({
+    origin: function(origin, callback) {
+        // allow requests with no origin (like Postman, curl, Render checks)
+        if (!origin) return callback(null, true);
+
+        // allow only origins in the list
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+
+        // instead of throwing error, just deny CORS (will block browser, but not deployment)
+        return callback(null, false);
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: [
+        'Content-Type',
+        'Authorization',
+        'x-access-token',
+        'Origin',
+        'Accept',
+        'X-Requested-With',
+        'X-CSRF-Token'
+    ]
+}));
+
+// handle preflight
+app.options('*', cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
 
 app.use(
     fileUpload({
