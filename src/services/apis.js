@@ -1,4 +1,4 @@
-const BASE_URL = "https://smashicse-server.onrender.com/api/v1";
+const BASE_URL = "https://smashicse-edtech-platform.onrender.com/api/v1"
 
 // AUTH ENDPOINTS
 export const endpoints = {

@@ -22,40 +22,34 @@ dotenv.config();
 // Connecting to database
 database.connect();
  
-// Define allowed origins
-const allowedOrigins = [
-    "https://smashicse-server.onrender.com/api/v1",  // your production frontend URL
-    "http://localhost:3000",  // local development frontend
-];
-
 // Middlewares
 app.use(express.json());
 app.use(cookieParser());
 
-// CORS configuration
-app.use(
-    cors({
-        origin: function (origin, callback) {
-            // allow requests with no origin (like mobile apps, curl, Postman)
-            if (!origin) return callback(null, true);
-            
-            if (allowedOrigins.indexOf(origin) === -1) {
-                const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-                return callback(new Error(msg), false);
-            }
-            return callback(null, true);
-        },
-        credentials: true,  // allow cookies and credentials
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token']
-    })
-);
+// CORS Configuration
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    
+    // Allow both localhost and production frontend
+    const allowedOrigins = ['http://localhost:3000', 'https://smashicse-edtech-platform-1.onrender.com'];
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
+    
+    // Essential CORS headers
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-CSRF-Token');
+    res.header('Access-Control-Expose-Headers', 'Content-Length, X-CSRF-Token');
+    res.header('Cache-Control', 'no-store, no-cache, must-revalidate');
 
-// Handle OPTIONS preflight requests
-app.options('*', cors({
-    origin: allowedOrigins,
-    credentials: true
-}));
+    // Handle preflight
+    if (req.method === 'OPTIONS') {
+        res.status(204).send();
+        return;
+    }
+    next();
+});
 
 app.use(
     fileUpload({
@@ -63,6 +57,14 @@ app.use(
         tempFileDir: "/tmp/",
     })
 );
+
+// Security Headers
+app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    next();
+});
 
 // Connecting to cloudinary
 cloudinaryConnect();
@@ -85,6 +87,30 @@ app.get("/", (req, res) => {
 // Listening to the server
 app.listen(PORT, () => {
 	console.log(`App is listening at ${PORT}`);
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Error:', {
+        message: err.message,
+        origin: req.headers.origin,
+        path: req.path,
+        method: req.method
+    });
+    
+    if (err.message.includes('CORS')) {
+        return res.status(403).json({
+            success: false,
+            message: 'CORS error - Origin not allowed',
+            error: err.message
+        });
+    }
+    
+    res.status(500).json({
+        success: false,
+        message: 'Internal server error',
+        error: err.message
+    });
 });
 
 // End of code.
