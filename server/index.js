@@ -22,20 +22,46 @@ dotenv.config();
 // Connecting to database
 database.connect();
  
+// Define allowed origins
+const allowedOrigins = [
+    "https://smashicse-server.onrender.com/api/v1",  // your production frontend URL
+    "http://localhost:3000",  // local development frontend
+];
+
 // Middlewares
 app.use(express.json());
 app.use(cookieParser());
+
+// CORS configuration
 app.use(
-	cors({
-		origin: "*",
-		credentials: true,
-	})
+    cors({
+        origin: function (origin, callback) {
+            // allow requests with no origin (like mobile apps, curl, Postman)
+            if (!origin) return callback(null, true);
+            
+            if (allowedOrigins.indexOf(origin) === -1) {
+                const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+                return callback(new Error(msg), false);
+            }
+            return callback(null, true);
+        },
+        credentials: true,  // allow cookies and credentials
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token']
+    })
 );
+
+// Handle OPTIONS preflight requests
+app.options('*', cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
+
 app.use(
-	fileUpload({
-		useTempFiles: true,
-		tempFileDir: "/tmp/",
-	})
+    fileUpload({
+        useTempFiles: true,
+        tempFileDir: "/tmp/",
+    })
 );
 
 // Connecting to cloudinary
