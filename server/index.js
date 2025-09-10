@@ -39,9 +39,14 @@ app.use((req, res, next) => {
     // Essential CORS headers
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-CSRF-Token');
+    res.header('Access-Control-Allow-Headers', 
+        'Origin, X-Requested-With, Content-Type, Accept, Authorization, ' +
+        'X-CSRF-Token, Referrer-Policy, sec-ch-ua, sec-ch-ua-mobile, ' +
+        'sec-ch-ua-platform, User-Agent'
+    );
     res.header('Access-Control-Expose-Headers', 'Content-Length, X-CSRF-Token');
     res.header('Cache-Control', 'no-store, no-cache, must-revalidate');
+    res.header('Referrer-Policy', 'strict-origin-when-cross-origin');
 
     // Handle preflight
     if (req.method === 'OPTIONS') {

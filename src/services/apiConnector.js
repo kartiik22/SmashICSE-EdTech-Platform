@@ -12,11 +12,16 @@ export const axiosInstance = axios.create({
 });
 
 export const apiConnector = (method, url, bodyData, headers, params) => {
+  const defaultHeaders = {
+    'Access-Control-Allow-Origin': 'https://smashicse-edtech-platform-1.onrender.com',
+    'Access-Control-Allow-Credentials': 'true'
+  };
+
   return axiosInstance({
     method: `${method}`,
     url: `${url}`,
     data: bodyData ? bodyData : null,
-    headers: headers ? headers : null,
+    headers: { ...defaultHeaders, ...(headers || {}) },
     params: params ? params : null,
   });
 };
