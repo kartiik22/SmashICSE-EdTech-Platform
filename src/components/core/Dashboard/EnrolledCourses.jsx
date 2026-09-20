@@ -34,32 +34,32 @@ export default function EnrolledCourses() {
 
   return (
     <>
-      <div className="text-3xl text-richblack-50">Enrolled Courses</div>
+      <div className="text-2xl sm:text-3xl font-bold text-richblack-50">Enrolled Courses</div>
       {!enrolledCourses ? (
         <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
           <div className="spinner"></div>
         </div>
       ) : !enrolledCourses.length ? (
-        <p className="grid h-[10vh] w-full place-content-center text-richblack-5">
+        <p className="grid h-[10vh] w-full place-content-center text-richblack-5 text-base sm:text-lg">
           You have not enrolled in any course yet.
-          {/* TODO: Modify this Empty State */}
         </p>
       ) : (
-        <div className="my-8 text-richblack-5">
-          {/* Headings */}
-          <div className="flex rounded-t-lg bg-richblack-500 ">
-            <p className="w-[45%] px-5 py-3">Course Name</p>
-            <p className="w-1/4 px-2 py-3">Duration</p>
-            <p className="flex-1 px-2 py-3">Progress</p>
-          </div>
-          {/* Course Names */}
-          {enrolledCourses.map((course, i, arr) => (
-            <div
-              className={`flex items-center border border-richblack-700 ${
-                i === arr.length - 1 ? "rounded-b-lg" : "rounded-none"
-              }`}
-              key={i}
-            >
+        <div className="my-8 text-richblack-5 overflow-x-auto">
+          <div className="min-w-[640px]">
+            {/* Headings */}
+            <div className="flex rounded-t-lg bg-richblack-700">
+              <p className="w-[45%] px-5 py-3 text-sm font-semibold">Course Name</p>
+              <p className="w-1/4 px-2 py-3 text-sm font-semibold">Duration</p>
+              <p className="flex-1 px-2 py-3 text-sm font-semibold">Progress</p>
+            </div>
+            {/* Course Names */}
+            {enrolledCourses.map((course, i, arr) => (
+              <div
+                className={`flex items-center border border-richblack-700 ${
+                  i === arr.length - 1 ? "rounded-b-lg" : "rounded-none"
+                }`}
+                key={i}
+              >
               <div
                 className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
                 onClick={() => {
@@ -93,6 +93,7 @@ export default function EnrolledCourses() {
               </div>
             </div>
           ))}
+          </div>
         </div>
       )}
     </>

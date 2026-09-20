@@ -35,16 +35,16 @@ function UpdatePassword() {
   }
 
   return (
-    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center w-full px-4 py-8">
       {loading ? (
         <div className="spinner"></div>
       ) : (
-        <div className="max-w-[500px] p-4 lg:p-8">
-          <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-richblack-5">
+        <div className="w-full max-w-[500px] p-4 sm:p-8">
+          <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-richblack-5">
             Choose new password
           </h1>
-          <p className="my-4 text-[1.125rem] leading-[1.625rem] text-richblack-100">
-            Almost done. Enter your new password and youre all set.
+          <p className="my-3 sm:my-4 text-sm sm:text-base leading-relaxed text-richblack-200">
+            Almost done. Enter your new password and you're all set.
           </p>
           <form onSubmit={handleOnSubmit}>
             <label className="relative">

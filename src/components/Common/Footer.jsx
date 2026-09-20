@@ -26,49 +26,54 @@ const Community = ["Forums", "Chapters", "Events"];
 
 const Footer = () => {
   return (
-<footer className="bg-gray-600 text-white py-10">
-<div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 bg-color:white">
+    <footer className="w-full bg-richblack-800 border-t border-richblack-700 text-white py-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {/* Founder Details */}
         <div>
-          <h2 className="text-xl font-semibold flex items-center gap-2">
-            <Users size={20} /> Founders
+          <h2 className="text-lg sm:text-xl font-semibold flex items-center gap-2 text-richblack-5">
+            <Users size={20} className="text-[#22c44c]" /> Founders
           </h2>
-          <ul className="mt-2 space-y-1 text-gray-300">
-            <li>Kartik <a href="tel:+91062" className="hover:text-blue-400"></a></li>
-            <li>Harshit <a href="tel:+917982" className="hover:text-blue-400"></a></li>
-            
+          <ul className="mt-2 space-y-1 text-richblack-300 text-sm">
+            <li>Kartik</li>
+            <li>Harshit</li>
           </ul>
         </div>
 
         {/* Class 11th & 12th Info */}
         <div>
-          <h2 className="text-xl font-semibold flex items-center gap-2">
-            <BookOpen size={20} /> Class 11th & 12th ICSE
+          <h2 className="text-lg sm:text-xl font-semibold flex items-center gap-2 text-richblack-5">
+            <BookOpen size={20} className="text-[#22c44c]" /> Class 11th & 12th ICSE
           </h2>
-          <p className="mt-2 text-gray-300">
-            High-quality video courses covering **PCM** with latest syllabus updates.
+          <p className="mt-2 text-richblack-300 text-sm leading-relaxed">
+            High-quality video courses covering PCM with the latest syllabus updates.
           </p>
-          <p className="text-gray-300">
-            Learn with **expert guidance** and **exam-focused** content.
+          <p className="mt-1 text-richblack-300 text-sm leading-relaxed">
+            Learn with expert guidance and exam-focused content.
           </p>
         </div>
 
         {/* Contact Info */}
         <div>
-          <h2 className="text-xl font-semibold flex items-center gap-2">
-            <Mail size={20} /> Contact Us
+          <h2 className="text-lg sm:text-xl font-semibold flex items-center gap-2 text-richblack-5">
+            <Mail size={20} className="text-[#22c44c]" /> Contact Us
           </h2>
-          <p className="mt-2 text-gray-300">
-            📧 Email: <a href="mailto:support@smashicse.com" className="hover:text-blue-400">support@smashicse.com</a>
+          <p className="mt-2 text-richblack-300 text-sm">
+            📧 Email:{" "}
+            <a href="mailto:support@smashicse.com" className="text-[#22c44c] hover:underline">
+              support@smashicse.com
+            </a>
           </p>
-          <p className="text-gray-300">
-            📞 Helpline: <a href="tel:+91XXXXXXXXXX" className="hover:text-blue-400">+91 9879827062</a>
+          <p className="mt-1 text-richblack-300 text-sm">
+            📞 Helpline:{" "}
+            <a href="tel:+919879827062" className="text-[#22c44c] hover:underline">
+              +91 9879827062
+            </a>
           </p>
         </div>
       </div>
 
       {/* Copyright */}
-      <div className="mt-8 text-center text-gray-400 text-sm border-t border-gray-700 pt-4">
+      <div className="mt-8 text-center text-richblack-400 text-xs sm:text-sm border-t border-richblack-700/60 pt-4 px-4">
         <p>© {new Date().getFullYear()} SmashICSE. All rights reserved.</p>
       </div>
     </footer>

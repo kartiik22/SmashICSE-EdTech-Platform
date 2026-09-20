@@ -47,17 +47,17 @@ function VerifyEmail() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] grid place-items-center">
+    <div className="min-h-[calc(100vh-3.5rem)] grid place-items-center w-full px-4 py-8">
       {loading ? (
         <div>
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="max-w-[500px] p-4 lg:p-8">
-          <h1 className="text-richblack-5 font-semibold text-[1.875rem] leading-[2.375rem]">
+        <div className="w-full max-w-[500px] p-4 sm:p-8">
+          <h1 className="text-richblack-5 font-bold text-2xl sm:text-3xl leading-tight">
             Verify Email
           </h1>
-          <p className="text-[1.125rem] leading-[1.625rem] my-4 text-richblack-100">
+          <p className="text-sm sm:text-base leading-relaxed my-3 sm:my-4 text-richblack-200">
             A verification code has been sent to you. Enter the code below
           </p>
           <form onSubmit={handleVerifyAndSignup}>
@@ -72,17 +72,17 @@ function VerifyEmail() {
                   style={{
                     boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                   }}
-                  className="w-[48px] lg:w-[60px] border-0 bg-richblack-800 rounded-[0.5rem] text-richblack-5 aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50"
+                  className="w-[38px] sm:w-[48px] lg:w-[58px] border-0 bg-richblack-800 rounded-[0.5rem] text-richblack-5 aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50 text-base sm:text-lg font-bold"
                 />
               )}
               containerStyle={{
                 justifyContent: "space-between",
-                gap: "0 6px",
+                gap: "0 4px",
               }}
             />
             <button
               type="submit"
-              className="w-full bg-[#22c44c] py-[12px] px-[12px] rounded-[8px] mt-6 font-medium text-richblack-900"
+              className="w-full bg-[#22c44c] py-[10px] sm:py-[12px] px-[12px] rounded-[8px] mt-6 font-semibold text-richblack-900 active:scale-98 transition-transform"
             >
               Verify Email
             </button>

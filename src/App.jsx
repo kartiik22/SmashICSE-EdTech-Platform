@@ -49,7 +49,7 @@ function App() {
   }, [])
   const location = useLocation();
   return (
-<div className="flex min-h-screen w-screen flex-col font-inter" style={{ backgroundColor: "#00020a" }}>
+    <div className="flex min-h-screen w-full max-w-full overflow-x-hidden flex-col font-inter" style={{ backgroundColor: "#00020a" }}>
 
       {/* Show Navbar only if not on the Home page */}
       {location.pathname !== "/" && <Navbar />}

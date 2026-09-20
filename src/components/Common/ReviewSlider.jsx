@@ -36,25 +36,39 @@ function ReviewSlider() {
   // console.log(reviews)
 
   return (
-    <div className="text-white">
-      <div className="my-[50px] h-[184px] max-w-maxContentTab lg:max-w-maxContent">
+    <div className="w-full text-white">
+      <div className="my-8 w-full max-w-maxContent mx-auto">
         <Swiper
-          slidesPerView={4}
-          spaceBetween={25}
-          loop={true}
+          slidesPerView={1}
+          spaceBetween={20}
+          loop={reviews.length > 3}
           freeMode={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
           }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+            },
+            1280: {
+              slidesPerView: 4,
+              spaceBetween: 25,
+            },
+          }}
           modules={[FreeMode, Pagination, Autoplay]}
-          className="w-[50vw] "
+          className="w-full"
         >
           {reviews.map((review, i) => {
             return (
               <SwiperSlide key={i}>
-                <div className="place-items-center flex flex-col gap-3 bg-richblack-800 p-3 text-[14px] text-richblack-25">
-                  <div className="flex items-center gap-4">
+                <div className="flex flex-col justify-between gap-3 rounded-xl border border-richblack-700 bg-richblack-800 p-4 text-[14px] text-richblack-25 min-h-[180px]">
+                  <div className="flex items-center gap-3">
                     <img
                       src={
                         review?.user?.image
@@ -62,16 +76,16 @@ function ReviewSlider() {
                           : `https://api.dicebear.com/5.x/initials/svg?seed=${review?.user?.firstName} ${review?.user?.lastName}`
                       }
                       alt=""
-                      className="h-9 w-9 rounded-full object-cover"
+                      className="h-10 w-10 rounded-full object-cover border border-richblack-600"
                     />
                     <div className="flex flex-col">
-                      <h1 className="font-semibold text-richblack-5">{`${review?.user?.firstName} ${review?.user?.lastName}`}</h1>
-                      <h2 className="text-[12px] font-medium text-richblack-500">
+                      <h3 className="font-semibold text-richblack-5 text-sm">{`${review?.user?.firstName} ${review?.user?.lastName}`}</h3>
+                      <h4 className="text-[12px] font-medium text-richblack-400">
                         {review?.course?.courseName}
-                      </h2>
+                      </h4>
                     </div>
                   </div>
-                  <p className="font-medium text-richblack-25">
+                  <p className="font-normal text-richblack-100 text-sm leading-relaxed">
                     {review?.review.split(" ").length > truncateWords
                       ? `${review?.review
                           .split(" ")
@@ -79,14 +93,14 @@ function ReviewSlider() {
                           .join(" ")} ...`
                       : `${review?.review}`}
                   </p>
-                  <div className="flex items-center gap-2 ">
-                    <h3 className="font-semibold text-yellow-100">
-                      {review.rating.toFixed(1)}
-                    </h3>
+                  <div className="flex items-center gap-2 mt-auto">
+                    <span className="font-semibold text-yellow-100 text-sm">
+                      {review.rating ? review.rating.toFixed(1) : "5.0"}
+                    </span>
                     <ReactStars
                       count={5}
-                      value={review.rating}
-                      size={20}
+                      value={review.rating || 5}
+                      size={18}
                       edit={false}
                       activeColor="#ffd700"
                       emptyIcon={<FaStar />}
@@ -97,7 +111,6 @@ function ReviewSlider() {
               </SwiperSlide>
             )
           })}
-         
         </Swiper>
       </div>
     </div>

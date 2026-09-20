@@ -7,20 +7,19 @@ import Plan_your_lessons from "../../../assets/Images/Plan_your_lessons.svg";
 
 const LearningLanguageSection = () => {
   return (
-    <div>
-        <div className="text-4xl font-semibold text-center my-10">
-            ICSE made 
-            <HighlightText text={"Easy"} />
-            <div className="text-center text-richblack-700 font-medium lg:w-[75%] mx-auto leading-6 text-base mt-3">
-            Navigating the ICSE syllabus can be challenging, but we simplify it for you! With structured courses, expert guidance, and an interactive learning experience, mastering Class XI and XII subjects has never been easier. Whether it's concept clarity, exam preparation, or doubt-solving, we ensure you stay ahead with confidence. 
-            </div>
-                      </div>
+    <div className="w-full">
+      <div className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-center my-8 sm:my-10">
+        ICSE made <HighlightText text={"Easy"} />
+        <p className="text-center text-richblack-200 font-normal lg:w-[75%] mx-auto leading-relaxed text-sm sm:text-base mt-4 px-2">
+          Navigating the ICSE syllabus can be challenging, but we simplify it for you! With structured courses, expert guidance, and an interactive learning experience, mastering Class XI and XII subjects has never been easier. Whether it's concept clarity, exam preparation, or doubt-solving, we ensure you stay ahead with confidence.
+        </p>
+      </div>
 
-          <div className="w-fit mx-auto lg:mb-20 mb-8 -mt-5">
-            <CTAButton active={true} linkto={"/signup"}>
-              <div className="">Learn More</div>
-            </CTAButton>
-          </div>
+      <div className="w-fit mx-auto mb-8 sm:mb-16">
+        <CTAButton active={true} linkto={"/signup"}>
+          <div>Learn More</div>
+        </CTAButton>
+      </div>
     </div>
   )
 }

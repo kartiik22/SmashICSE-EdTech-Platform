@@ -57,35 +57,35 @@ function Catalog() {
   }
   
   return (
-    <>
+    <div className="w-full">
       {/* Hero Section */}
-      <div className=" box-content bg-black px-4">
-        <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
-          <p className="text-sm text-richblack-300">
+      <div className="box-content bg-richblack-900 border-b border-richblack-800 px-4 py-8 sm:py-12">
+        <div className="mx-auto flex flex-col justify-center gap-3 max-w-maxContent">
+          <p className="text-xs sm:text-sm text-richblack-300">
             {`Home / Class / `}
             <b>
-            <span className="text-[#22c44c]">
-              {catalogPageData?.data?.selectedCategory?.name}
-            </span>
+              <span className="text-[#22c44c]">
+                {catalogPageData?.data?.selectedCategory?.name}
+              </span>
             </b>
           </p>
-          <p className="text-3xl text-richblack-5">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-richblack-5">
             {catalogPageData?.data?.selectedCategory?.name}
-          </p>
-          <p className="max-w-[870px] text-richblack-200">
+          </h1>
+          <p className="max-w-[870px] text-sm sm:text-base text-richblack-200 leading-relaxed">
             {catalogPageData?.data?.selectedCategory?.description}
           </p>
         </div>
       </div>
 
       {/* Section 1 */}
-      <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+      <div className="mx-auto box-content w-full max-w-maxContent px-4 py-8 sm:py-12">
         <div className="section_heading">Our ICSE Courses</div>
-        <div className="my-4 flex border-b border-b-richblack-600 text-sm">
+        <div className="my-4 flex border-b border-b-richblack-600 text-sm overflow-x-auto">
           <p
-            className={`px-4 py-2 ${
+            className={`px-4 py-2 whitespace-nowrap ${
               active === 1
-                ? "border-b border-b-yellow-25 text-[#22c44c]"
+                ? "border-b-2 border-b-[#22c44c] text-[#22c44c] font-semibold"
                 : "text-richblack-50"
             } cursor-pointer`}
             onClick={() => setActive(1)}
@@ -93,9 +93,9 @@ function Catalog() {
             Most Viewed Courses
           </p>
           <p
-            className={`px-4 py-2 ${
+            className={`px-4 py-2 whitespace-nowrap ${
               active === 2
-                ? "border-b border-b-yellow-25 text-[#22c44c]"
+                ? "border-b-2 border-b-[#22c44c] text-[#22c44c] font-semibold"
                 : "text-richblack-50"
             } cursor-pointer`}
             onClick={() => setActive(2)}
@@ -103,18 +103,19 @@ function Catalog() {
             Newest Courses
           </p>
         </div>
-        <div>
+        <div className="w-full">
           <Course_Slider
             Courses={catalogPageData?.data?.selectedCategory?.courses}
           />
         </div>
       </div>
+
       {/* Section 2 */}
-      <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+      <div className="mx-auto box-content w-full max-w-maxContent px-4 py-8 sm:py-12">
         <div className="section_heading">
           Top courses in {catalogPageData?.data?.differentCategory?.name}
         </div>
-        <div className="py-8">
+        <div className="py-6 sm:py-8 w-full">
           <Course_Slider
             Courses={catalogPageData?.data?.differentCategory?.courses}
           />
@@ -122,14 +123,14 @@ function Catalog() {
       </div>
 
       {/* Section 3 */}
-      <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+      <div className="mx-auto box-content w-full max-w-maxContent px-4 py-8 sm:py-12">
         <div className="section_heading">Frequently Bought</div>
-        <div className="py-8">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="py-6 sm:py-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {catalogPageData?.data?.mostSellingCourses
               ?.slice(0, 4)
               .map((course, i) => (
-                <Course_Card course={course} key={i} Height={"h-[400px]"} />
+                <Course_Card course={course} key={i} Height={"h-[200px] sm:h-[260px]"} />
               ))}
           </div>
         </div>

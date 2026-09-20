@@ -87,8 +87,8 @@ function SignupForm() {
       <Tab tabData={tabData} field={accountType} setField={setAccountType} />
       {/* Form */}
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
-        <div className="flex gap-x-4">
-          <label>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <label className="w-full flex-1">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               First Name <sup className="text-pink-200">*</sup>
             </p>
@@ -102,7 +102,7 @@ function SignupForm() {
               className="form-style w-full"
             />
           </label>
-          <label>
+          <label className="w-full flex-1">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Last Name <sup className="text-pink-200">*</sup>
             </p>
@@ -131,8 +131,8 @@ function SignupForm() {
             className="form-style w-full"
           />
         </label>
-        <div className="flex gap-x-4">
-          <label className="relative">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <label className="relative w-full flex-1">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Create Password <sup className="text-pink-200">*</sup>
             </p>
@@ -156,7 +156,7 @@ function SignupForm() {
               )}
             </span>
           </label>
-          <label className="relative">
+          <label className="relative w-full flex-1">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Confirm Password <sup className="text-pink-200">*</sup>
             </p>
@@ -183,7 +183,7 @@ function SignupForm() {
         </div>
         <button
           type="submit"
-          className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+          className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[10px] px-[12px] font-medium text-richblack-900 active:scale-98 transition-transform"
         >
           Create Account
         </button>
